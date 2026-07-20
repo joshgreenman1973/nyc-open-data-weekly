@@ -1,2 +1,7 @@
 week_ending,crashes,persons_injured,persons_killed,pedestrians_injured,pedestrians_killed,cyclists_injured,shooting_incidents,shooting_victims,shooting_murders,hpd_complaints,hpd_heat_hot_water,hpd_heat_pct,hpd_bronx_pct,hpd_open_pct,hpd_immediate_emergency,vacate_orders_new,vacate_orders_active,restaurant_inspections,critical_violations,restaurant_closures,dob_filings,dob_large_projects_over_1m
-2026-03-13,924,565,5,108,2,54,0,0,0,17969,5822,32.4,35.9,72.0,717,20,12,126,61,5,0,0
+2026-03-13,924,565,5,108,2,54,,,,17969,5822,32.4,35.9,72.0,717,20,,126,61,5,,
+2026-06-22,,,,,,,,,,11772,922,7.8,31.8,7.1,626,19,,1648,908,8,3111,127
+2026-06-29,,,,,,,,,,12752,944,7.4,32.8,12.3,654,28,,2258,1247,13,3143,140
+2026-07-06,,,,,,,,,,14718,1233,8.4,39.2,24.1,2115,13,,1707,906,9,2602,115
+2026-07-13,,,,,,,,,,13666,1057,7.7,31.9,47.9,726,18,,1834,1011,9,3086,125
+2026-07-20,,,,,,,,,,13505,886,6.6,31.1,82.2,758,10,4508,1314,728,9,3162,107
