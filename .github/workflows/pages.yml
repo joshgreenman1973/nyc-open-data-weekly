@@ -2,10 +2,16 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '17 13 * * 1'   # Mondays, ~9:17am ET: refresh the weekly trends
+  workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -14,6 +20,21 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      # On the weekly schedule (or a manual run), pull new numbers from NYC Open
+      # Data and commit them. A push made with GITHUB_TOKEN doesn't trigger this
+      # workflow again, so the same run goes on to publish.
+      - if: github.event_name != 'push'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - if: github.event_name != 'push'
+        run: python3 update_trends.py
+      - if: github.event_name != 'push'
+        run: |
+          git config user.name "Open Data Weekly Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add weekly-trends.csv dashboard.html
+          git diff --cached --quiet || (git commit -m "Weekly trends: refresh from NYC Open Data [skip ci]" && git push)
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:
